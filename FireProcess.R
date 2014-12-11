@@ -6,7 +6,7 @@
 #POSIXct date column added.
 #CSV of cleaned tabled output with filename "firesdata.csv".
 
-fires<-read.csv(paste(getwd(),"/","FiresClipTableExport.csv",sep=""))
+fires<-read.csv(paste(getwd(),"/FireData/","FiresClipTableExport.csv",sep=""))
 
 area_burned_km2<-fires$Shape_Area/10^6
 fires<-fires[,-c(1,3,4,5,7,10,12,13,14,15,16,17,18)]
