@@ -1,0 +1,148 @@
+---
+title: "Project"
+author: "Leslie Herrera Garcia"
+date: "Saturday, November 08, 2014"
+output: word_document
+---
+
+
+```{r}
+setwd("~/EnvE 105/Project")
+precip = read.csv(file ="Precipitation_San_Joaquin.csv")
+firesc = read.csv(file = "FiresClipTableExport.csv")
+
+install.packages("plyr",repos="http://cran.rstudio.com/")
+library(plyr)
+
+precipsub = precip[1:30,]
+PrecipSub = precip[77:106,]
+
+y = 43560*(0.3048^(3))
+precip$WYSum = precip$WYsum *y
+precipsub$WYSum = precipsub$WYsum * y
+PrecipSub$WYSum = PrecipSub$WYsum * y
+
+firesc$FID_ = NULL
+firesc[2:16] = list(NULL)
+
+fires = as.data.frame(table(firesc$YEAR_))
+colnames(fires)[grepl("Var1", colnames(fires))] = "Year"
+colnames(fires)[grepl("Freq", colnames(fires))] = "Num_Fires"
+
+areasum = ddply(firesc, "YEAR_", numcolwise(sum))
+areamean = ddply(firesc, "YEAR_", numcolwise(mean))
+
+x = 1e+06
+areasum$ShapeArea = areasum$Shape_Area / x
+areamean$ShapeArea = areamean$Shape_Area / x
+
+plot(WYSum~WY, data = precipsub, main = "First 30 years", xlab = "Water Year", ylab = "Water Year Sum (million cubic meters)")
+lines(WYSum~WY, data = precipsub, xlab = "Water Year", ylab = "Water Year Sum (million cubic meters)")
+
+plot(WYSum~WY, data = PrecipSub, main = "Last 30 years", xlab = "Water Year", ylab = "Water Year Sum (million cubic meters)")
+lines(WYSum~WY, data = PrecipSub, xlab = "Water Year", ylab = "Water Year Sum (million cubic meters)")
+
+fit = lm(log(PrecipSub$WYSum)~log(precipsub$WYSum))
+summary(fit)
+
+plot(log(PrecipSub$WYSum)~log(precipsub$WYSum), main = "Water Year Distribution", xlab = "First 30 years", ylab = "Last 30 years")
+abline(fit, col = "darkslateblue",lwd = 2)
+
+tbl = table(precip$Yr.type)
+tbl
+
+fires1 = fires[1:10,]
+precip1 = precip[1:10,]
+
+fires2 = fires[11:20,]
+precip2 = precip[11:20,]
+
+fires3 = fires[21:30,]
+precip3 = precip[21:30,]
+
+fires4 = fires[31:40,]
+precip4 = precip[31:40,]
+
+fires5 = fires[41:50,]
+precip5 = precip[41:50,]
+
+fires6 = fires[51:60,]
+precip6 = precip[51:60,]
+
+fires7 = fires[61:70,]
+precip7 = precip[61:70,]
+
+fires8 = fires[71:80,]
+precip8 = precip[71:80,]
+
+fires9 = fires[81:90,]
+precip9 = precip[81:90,]
+
+fires10 = fires[91:106,]
+precip10 = precip[91:106,]
+
+```
+
+```{rfig.width = 9, fig.height = 3}
+par(mfrow= c(1,3))
+
+plot(WYSum~WY, data = precip, main = "Total Discharge per Water Year", xlab = "Water Year", ylab = "Water Year Sum (million cubic meters)")
+lines(WYSum~WY, data = precip)
+
+plot(Index~WY, data = precip, main = "Water Supply Index vs Water Year", xlab = "Water Year", ylab = "Water Supply Index")
+lines(Index~WY, data = precip)
+
+plot(fires, xlab = "Time (years)", ylab = "Number of Fires", main = "Number of Fires per Year")
+lines(fires)
+
+```
+
+```{rfig.width = 9, fig.height = 5}
+par(mfrow= c(1,2))
+plot(ShapeArea~YEAR_, data = areasum, main = "Total", xlab = "Time (years)", ylab = "Shape Area Burned (million squared meters)")
+lines(ShapeArea~YEAR_, data = areasum, main = "Total", xlab = "Time (years)", ylab = "Area Shape Burned (million squared meters)")
+
+plot(ShapeArea~YEAR_, data = areamean, main = "Mean", xlab = "Time (years)", ylab = "Shape Area Burned (million squared meters)")
+lines(ShapeArea~YEAR_, data = areamean, main = "Mean", xlab = "Time (years)", ylab = "Shape Area Burned (million squared meters)")
+
+```
+
+
+```{rfig.width = 9, fig.height = 5.5}
+par(mfrow= c(1,2))
+plot(log(precip$WYSum)~log(areasum$ShapeArea), main = "Total Discharge vs. Total Shape Area Burned", ylab = "Water Year Sum (million cubic meters)", xlab = "Shape Area Burned (million squared meters)")
+fit1 = lm(log(precip$WYSum)~log(areasum$ShapeArea))
+abline(fit1, col = "darkslateblue",lwd = 2)
+summary(fit1)
+
+plot(log(precip$WYSum)~log(areamean$ShapeArea), main = "Total Discharge vs. Mean Shape Area Burned",ylab = "Water Year Sum (million cubic meters)", xlab = "Shape Area Burned (million squared meters)")
+fit2 = lm(log(precip$WYSum)~log(areamean$ShapeArea))
+abline(fit2, col = "darkslateblue",lwd = 2)
+summary(fit2)
+
+```
+
+
+```{rfig.width = 9, fig.height = 6}
+par(mfrow= c(2,5))
+plot(fires1$Num_Fires~precip1$Yr.type, main = "First Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires2$Num_Fires~precip2$Yr.type, main = "Second Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires3$Num_Fires~precip3$Yr.type, main = "Third Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires4$Num_Fires~precip4$Yr.type, main = "Fourth Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires5$Num_Fires~precip5$Yr.type, main = "Fifth Decade",  xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires6$Num_Fires~precip6$Yr.type, main = "Sixth Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires7$Num_Fires~precip7$Yr.type, main = "Seventh Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires8$Num_Fires~precip8$Yr.type, main = "Eighth Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires9$Num_Fires~precip9$Yr.type, main = "Ninth Decade", xlab = "Water Year Type", ylab = "Number of fires")
+plot(fires10$Num_Fires~precip10$Yr.type, main = "Tenth Decade", xlab = "Water Year Type", ylab = "Number of fires")
+```
+
+#precipset = subset(precip, Yr.type == "C" | Yr.type == "D")
+#with(precipset, table(Yr.type))
+#newdata = subset(precip, Yr.type == "C" | Yr.type == "D", select = c(Yr.type, WY))
+#data = read.table("http://cdec.water.ca.gov/cgi-progs/queryCSV?station_id=SOR&dur_code=M&sensor_num=2&start_date=1/1/1905&end_date=Now", header = TRUE)
+#tbl = table(precipset$Yr.type, precip$WY)
+#tbl
+#plot(fires$Num_Fires~precip$WYsum, xlab = "Water Year Sum", ylab = "Number of fires", main = "Number of Fires per Water Year Sum between 1908 and 2013")
+#abline(lm(fires$Num_Fires~precip$WYsum), col = "darkslateblue",lwd = 2)
+
