@@ -1,0 +1,372 @@
+---
+output: html_document
+---
+
+
+```{r}
+setwd("~/ENVE105/Project")
+
+Asthma <- read.csv("asthma_count.csv")
+Asthmac <- read.csv("Data_203204.csv")
+Air<- read.csv("SJCABPM25.csv")
+
+
+summary(Asthma)
+summary(Air)
+str(Asthma)
+str(Air)
+# 
+# Kings<- Air[which(Air$COUNTY.NAME=="Kings"),]
+# strDatesKings<- c("01/15/2001","12/12/2010")
+# Kingsformat<- "%y"
+# Kings$date<-as.Date(Kings$DATE,Kingsformat)
+# 
+# plot(Kings$PM25_CONCENTRATION~Kings$date,main="Concentration in Kings vs. time", xlab="Date", ylab="PM_25 Conentration")
+# 
+# 
+# plot(Asthma$Year,Asthma$Kings,main="Kings vs.Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Kings,type="b",lwd=1.5)
+# 
+# hist(Kings$PM25_CONCENTRATION,main="Conentration",xlab="Concentration range",ylab="Frequency")
+# 
+# ```
+# 
+# ```{r}
+# Fresno<- Air[which(Air$COUNTY.NAME=="Fresno"),]
+# strDatesFresno<- c("01/15/2001","12/12/2010")
+# datesKings<- as.Date(strDatesKings,"%m/%d/%y")
+# Kingsformat<- "%y/%m"
+# Kings$date<-as.Date(Kings$DATE,Kingsformat)
+# 
+# plot(Fresno$PM25_CONCENTRATION~Fresno$DATE,main= "Concentration in Fresno vs.time", xlab="Date",ylab="PM_25 Conentration")
+# 
+# lines(Fresno$PM25_CONCENTRATION~Fresno$DATE, type="b",lwd=1.5)
+# 
+# plot(Asthma$Year, Asthma$Fresno,main="Fresno vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Fresno,type="b",lwd=1.5)
+# 
+# hist(Fresno$PM25_CONCENTRATION, main="Concentration",xlab="Concentration range",ylab="Frequency")
+# ```
+# 
+# ```{r}
+# Kern<- Air[which(Air$COUNTY.NAME=="Kern"),]
+# 
+# plot(Kern$PM25_CONCENTRATION~Kern$DATE, main= "Concentration in Kern vs.time", xlab="Date",ylab="PM_25 Conentration")
+# 
+# lines(Kern$PM25_CONCENTRATION~Kern$DATE, type="b",lwd=1.5)
+# 
+# plot(Asthma$Year, Asthma$Kern,main="Kern vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Kern,type="b",lwd=1.5)
+# 
+# hist(Kern$PM25_CONCENTRATION, main="Concentration",xlab="Concentration range",ylab="Frequency")
+# ```
+# 
+# ```{r}
+# Merced<- Air[which(Air$COUNTY.NAME=="Merced"),]
+# 
+# plot(Merced$PM25_CONCENTRATION~Merced$DATE, main= "Concentration in Merced vs.time", xlab="Date",ylab="PM_25 Conentration")
+# 
+# lines(Merced$PM25_CONCENTRATION~Merced$DATE, type="b",lwd=1.5)
+# 
+# plot(Asthma$Year, Asthma$Merced,main="Merced vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Merced,type="b",lwd=1.5)
+# 
+# hist(Merced$PM25_CONCENTRATION, main="Concentration", xlab="Concentration range", ylab="Frequency")
+# ```
+# 
+# ```{r}
+# Stanislaus<- Air[which(Air$COUNTY.NAME=="Stanislaus"),]
+# 
+# plot(Stanislaus$PM25_CONCENTRATION~Stanislaus$DATE, main= "Concentration in Stanislaus vs.time", xlab="Date",ylab="PM_25 Conentration")
+# 
+# lines(Stanislaus$PM25_CONCENTRATION~Stanislaus$DATE, type="b",lwd=1.5)
+# 
+# plot(Asthma$Year, Asthma$Stanislaus,main="Stanislaus vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Stanislaus,type="b",lwd=1.5)
+# 
+# hist(Stanislaus$PM25_CONCENTRATION, main="Concentration",xlab="Concentration range", ylab="Frequency")
+# ```
+# 
+# ```{r}
+#  Madera<- Air[which(Air$COUNTY.NAME=="Madera"),]
+#  
+# plot(Madera$PM25_CONCENTRATION~Madera$DATE, main= "Concentration in Madera vs.time", xlab="Date",ylab="PM_25 Conentration")
+#  
+# lines(Madera$PM25_CONCENTRATION~Madera$DATE, type="b",lwd=1.5)
+#  
+# plot(Asthma$Year, Asthma$Madera,main="Madera vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+#  
+# lines(Asthma$Year,Asthma$Madera,type="b",lwd=1.5)
+# 
+# hist(Madera$PM25_CONCENTRATION, main="Concentration", xlab="Concentration range", ylab="frequency")
+# ```
+# 
+# ```{r}
+# Tulare<- Air[which(Air$COUNTY.NAME=="Tulare"),]
+# 
+# plot(Tulare$PM25_CONCENTRATION~Tulare$DATE, main= "Concentration in Tulare vs.time", xlab="Date",ylab="PM_25 Conentration")
+# 
+# lines(Tulare$PM25_CONCENTRATION~Tulare$DATE, type="b",lwd=1.5)
+# 
+# plot(Asthma$Year, Asthma$Tulare,main="Tulare vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+# 
+# lines(Asthma$Year,Asthma$Tulare,type="b",lwd=1.5)
+# 
+# hist(Tulare$PM25_CONCENTRATION, main="Concentration", xlab="Concentration range", ylab="frequency")
+# ```
+
+```{rfig.width=10,fig.height=9}
+#(mfrow=c(3,3));
+plot(Asthma$Year, Asthma$Fresno,main="Fresno vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Fresno,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Kern,main="Kern vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Kern,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Kings,main="Kings vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Kings,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Madera,main="Madera vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Madera,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Merced,main="Merced vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals diagnosed with Asthma")
+lines(Asthma$Year,Asthma$Merced,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Stanislaus,main="Stanislaus vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Stanislaus,type="b",lwd=1.5)
+plot(Asthma$Year, Asthma$Tulare,main="Tulare vs. Ind hospitalized with Asthma", xlab="Year", ylab="Number of individuals with Asthma")
+lines(Asthma$Year,Asthma$Tulare,type="b",lwd=1.5)
+```
+
+```{rfig.width=10,fig.height=9}
+#par(mfrow=c(3,3));
+
+plot(Asthmac$Year, Asthmac$Fresno, main="Fresno", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Fresno, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Kern, main="Kern", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Kern, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Kings, main="Kings", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Kings, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Madera, main="Madera", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Madera, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Merced, main="Merced", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Merced, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$SanLuisObispo, main="SLO", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$SanLuisObispo, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Stanislaus, main="Stanislaus", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Stanislaus, type="b",lwd=1.5)
+
+plot(Asthmac$Year, Asthmac$Tulare, main="Fresno", xlab="Time", ylab="Diagnosed per 10,000")
+lines(Asthmac$Year, Asthmac$Tulare, type="b",lwd=1.5)
+```
+
+```{r}
+par(mfrow=c(1,2))
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Fresno"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgFresno<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Kern"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,3])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgKern<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Kings"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,4])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgKings<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Madera"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,5])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgMadera<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Merced"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,6])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgMerced<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Stanislaus"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgStanislaus<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Tulare"))
+   PMmeans<- c(PMmeans,mean(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgTulare<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+
+Centralvalley<- rbind(BasinAvgFresno,BasinAvgKern,BasinAvgKings,BasinAvgMadera,BasinAvgMerced,BasinAvgStanislaus,BasinAvgTulare)
+
+plot(Centralvalley$PMmeans,Centralvalley$Asthmarates,main="Air Quality vs. Asthma Rates",xlab="Annual Mean 2.5",ylab="Annual Asthma Hospitalization per 10,000")
+centralline<- lm(Asthmarates~PMmeans,data=Centralvalley)
+abline(centralline)
+summary(centralline)
+
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Fresno"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgFresno<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Kern"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,3])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgKern<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Kings"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,4])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgKings<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Madera"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,5])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgMadera<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Merced"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,6])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgMerced<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Stanislaus"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgStanislaus<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+ Year <- c(2001:2011)
+ PMmeans<- NULL
+ Asthmarates<- NULL
+ j <- 1
+ for(i in seq(from=2001, to=2011, by=1)){
+   airsubset<- subset(Air,(Air$year==i) & (Air$COUNTY.NAME=="Tulare"))
+   PMmeans<- c(PMmeans,max(airsubset$PM25_CONCENTRATION,na.rm=TRUE))
+   Asthmasum<- (Asthmac[j,2])
+   j<- j+1
+   Asthmarates<- c(Asthmarates,Asthmasum)
+ }
+BasinAvgTulare<- as.data.frame(cbind(Year,PMmeans,Asthmarates))
+
+
+Centralvalley2<- rbind(BasinAvgFresno,BasinAvgKern,BasinAvgKings,BasinAvgMadera,BasinAvgMerced,BasinAvgStanislaus,BasinAvgTulare)
+
+Centralvalley21<- subset(Centralvalley2,is.finite(Centralvalley2$PMmeans))
+
+plot(Centralvalley21$PMmeans,Centralvalley21$Asthmarates,main="Air Quality vs. Asthma Rates",xlab="Annual max 2.5",ylab="Annual Asthma Hospitalization per 10,000")
+centralline2<- lm(Asthmarates~PMmeans,data=Centralvalley21)
+abline(centralline2)
+summary(centralline2)
