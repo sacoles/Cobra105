@@ -1,0 +1,42 @@
+---
+title: "Application Shiny"
+author: "Vincent Chou"
+date: "Thursday, December 11, 2014"
+output: html_document
+runtime: shiny
+---
+```{r}
+library(shiny)
+
+# Define UI for application that plots random distributions 
+
+shinyUI(pageWithSidebar(
+  
+  
+  # Application title
+  headerPanel("Air Quality vs. Asthma Count in The San Joaquin Valley"),
+  
+  # Sidebar with a slider input for number of observations
+  sidebarPanel(
+    sliderInput("obs", 
+                "Animation:", (2001+1),2012,(2001+1),step=(1),
+                animate=animationOptions(interval=300,loop=F),format="####")
+  ,
+  selectInput("Air Quality Timeseries vs. County:",
+              list("County" = "asthma_count", 
+                   "San Joaquin" = "X6077", 
+                   "Stanislaus" = "X6099",
+                   "Merced"="X6047",
+                   "Madera"="X6039",
+                   "Fresno"="X6019",
+                   "Kings"="X6029",
+                   "Tulare"="X6107",
+                   "Kern"="X6029"))
+  ),
+  
+  mainPanel(
+    plotOutput("timePlot"),
+    plotOutput("countyPlot")
+  )
+))
+```
