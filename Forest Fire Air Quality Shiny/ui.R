@@ -6,7 +6,7 @@ shinyUI(pageWithSidebar(
   
   
   # Application title
-  headerPanel("Forest Fire and Air Quality Visualization"),
+  headerPanel(HTML("<h3>Forest Fire and Air Quality Visualization</h3>")),
   
   # Sidebar with a slider input for number of observations
   sidebarPanel(

@@ -62,19 +62,20 @@ shinyServer(function(input, output) {
   
   output$about<-renderUI({
     spc<-""
-    str1<-"About the Forest Fire and Air Quality Visualization App"
-    str2<-"Data Sources"
+    str1<-"<h4>About the Forest Fire and Air Quality Visualization App</h4>"
+    str2<-"<h5>Data Sources</h5>"
     str3<-"Forest Fire Data: Obtained from the CALFIRE Fire Area Perimeter shapefile. Fires were clipped to only include those within the drainage
     area of the San Joaquin and Tulare Lake Basins. Area burned was calculated by summing the shape area for each month based on fire ignition date."
     str4<-"Air Quality Data: Obtained from the national EPA daily average PM2.5 dataset. Data was aggregated to monthly average PM 2.5."
-    str5<-"Interpretation"
+    str5<-"<h5>Interpretation</h5>"
     str6<-"The top pane show a time series of air quality and monthly area burned. The peaks do not occur at the same time, indicating that forest 
     fires are not a significant driver of air quality in the San Joaquin Air Basin. However, small peaks within the troughs indicate forest fires 
     may slightly increase PM 2.5 concentration during the fire season."
     str7<-"The bottom pane shows a map with outlines of each county within the San Joaquin Air Basin. Counties are colored based on the air quality for 
     the time indicated in the time series. The southern end of the basin generally experiences worse air quality than the northern end."
+    str8<-"Is air quality in the San Joaquin Air Basin influenced by forest fires?"
     
-    HTML(paste(str1,spc,str2,spc,str3,str4,spc,str5,spc,str6,str7,sep='<br/>'))
+    HTML(paste(str1,spc,str8,spc,str2,spc,str3,str4,spc,str5,spc,str6,str7,sep='<br/>'))
     
   })
 })
