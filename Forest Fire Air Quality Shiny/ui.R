@@ -27,7 +27,12 @@ shinyUI(pageWithSidebar(
   ),
   
   mainPanel(
-    plotOutput("timePlot"),
-    plotOutput("countyPlot")
+    tabsetPanel(
+      tabPanel("Plot",
+          plotOutput("timePlot"),
+          plotOutput("countyPlot")
+      ),
+      tabPanel("About",htmlOutput("about"))
+    )
   )
 ))
